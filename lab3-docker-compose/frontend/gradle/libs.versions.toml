@@ -1,0 +1,108 @@
+[versions]
+# Most valuable
+kotlin = "2.2.20"
+ksp = "2.2.20-2.0.3"
+cmp = "1.9.2"
+
+# Android
+agp = "8.10.1"
+androidx-activity = "1.10.1"
+androidx-camera = "1.5.1"
+accompanist = "0.37.3"
+
+# Kotlinx
+ktor = "3.3.0"
+serialization = "1.9.0"
+coroutines = "1.10.2"
+datetime = "0.7.1"
+
+# Architecture
+koin = "4.1.1"
+decompose = "3.4.0"
+
+# etc.
+russhwolf-settings = "1.3.0"
+
+# Compose
+md3 = "1.10.0-alpha03"
+coil = "3.3.0"
+haze = "1.6.10"
+
+backhandler = "1.9.1"
+
+[libraries]
+
+backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "backhandler" }
+
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidx-camera" }
+androidx-camera-compose = { module = "androidx.camera:camera-compose", version.ref = "androidx-camera" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "androidx-camera" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidx-camera" }
+
+# Kotlinx
+kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "datetime" }
+
+# Ktor
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+ktor-client-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# Koin
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+
+# Decompose
+decompose-core = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
+decompose-compose = { module = "com.arkivanov.decompose:extensions-compose", version.ref = "decompose" }
+
+# Russhwolf settings
+settings-core = { module = "com.russhwolf:multiplatform-settings", version.ref = "russhwolf-settings" }
+settings-no-arg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "russhwolf-settings" }
+
+# Coil
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
+
+# Material Design 3 (Expressive)
+compose-material-expressive = { module = "org.jetbrains.compose.material3:material3", version.ref = "md3" }
+
+# Haze
+compose-haze-core = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+compose-haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "haze" }
+
+# For buildSrc build.gradle.kts
+gradle-plugin-kotlin-android = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle-plugin-android = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+gradle-plugin-compose = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "cmp" }
+gradle-plugin-compose-compiler = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+gradle-plugin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+gradle-plugin-ksp = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+[bundles]
+settings = ["settings-core", "settings-no-arg"]
+ktor = ["ktor-client-core", "ktor-client-cio", "ktor-client-negotiation", "ktor-client-logging", "kotlinx-serialization-json", "ktor-client-json"]
+serialization = ["kotlinx-serialization-core", "kotlinx-serialization-json"]
+decompose = ["decompose-core", "decompose-compose"]
+haze = ["compose-haze-core", "compose-haze-materials"]
+coil = ["coil-compose", "coil-network-ktor3", "coil-svg"]
+androidx-camera = ["androidx-camera-core", "androidx-camera-compose", "androidx-camera-lifecycle", "androidx-camera-camera2"]
+
+
+[plugins]
+# For root and composeApp build.gradle.kts
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "cmp" }
+compose-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

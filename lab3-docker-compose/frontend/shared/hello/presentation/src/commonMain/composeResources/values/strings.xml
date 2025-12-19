@@ -1,0 +1,6 @@
+<resources>
+    <string name="hello_title">Приветствуем в ДоброДаре!</string>
+    <string name="hello_desc_title">Место, где вещи обретают новых хозяев</string>
+    <string name="hello_desc">Освободите свой дом от лишнего и помогите другим обрести именно то, что им нужно. Здесь дарят с заботой, а находят с благодарностью.</string>
+    <string name="join_button">Присоединиться</string>
+</resources>

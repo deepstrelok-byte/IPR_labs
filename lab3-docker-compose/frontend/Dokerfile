@@ -1,0 +1,10 @@
+FROM nginx:alpine
+
+# Удаляем дефолтный конфиг
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Копируем наш конфиг (создадим его ниже)
+COPY nginx.conf /etc/nginx/conf.d/
+
+# Можно закинуть заглушку index.html, чтобы по localhost:80 что-то открывалось
+COPY index.html /usr/share/nginx/html/

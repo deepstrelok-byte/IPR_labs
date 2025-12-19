@@ -1,0 +1,6 @@
+<resources>
+    <string name="fab_find_help">Попросить вещь</string>
+    <string name="fab_share_care">Подарить вещь</string>
+    <string name="bar_find_help">Найти\nпомощь</string>
+    <string name="bar_share_care">Помочь\nдругим</string>
+</resources>

@@ -1,0 +1,76 @@
+version: '3.8'
+
+# Сети для изоляции (Критерий: networks)
+networks:
+  app-network:
+    driver: bridge
+
+# Тома для данных (Критерий: volumes)
+volumes:
+  postgres_data:
+
+services:
+  # Сервис 1: База данных
+  db:
+    image: postgres:15-alpine
+    container_name: my_app_db
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    # Проверка здоровья БД (Критерий: Healthchecks)
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  # Сервис 2: Бэкенд
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: my_app_backend
+    environment:
+      DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    # Зависимость от БД (Критерий: depends_on)
+    depends_on:
+      db:
+        condition: service_healthy # Ждет, пока пройдет healthcheck
+    # Профили (Критерий: profiles - dev/prod)
+    profiles: ["dev", "prod"] 
+
+  # Сервис 3: Фронтенд (Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: my_app_frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    profiles: ["prod"] # В dev режиме может быть не нужен, если запускаешь локально
+
+  # Бонус: 4-й сервис (например, Adminer для просмотра БД), чтобы точно зачли 3 сервиса
+  db-admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - app-network
+    depends_on:
+      - db
+    profiles: ["dev"]

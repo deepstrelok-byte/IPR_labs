@@ -1,0 +1,9 @@
+{
+  "users": [
+    {"id": 1, "name": "Иван Иванов", "email": "ivan@example.com"},
+    {"id": 2, "name": "Мария Петрова", "email": "maria@example.com"}
+  ],
+  "health": [
+    {"status": "ok", "timestamp": "2024-01-01T00:00:00Z"}
+  ]
+}
