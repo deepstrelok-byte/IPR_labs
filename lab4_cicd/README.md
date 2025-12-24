@@ -1,2 +1,2 @@
 unit-тесты находятся в папке tests
-пайпалайн лежит в .github/workflows
+пайплайн лежит в .github/workflows
